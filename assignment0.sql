@@ -35,14 +35,9 @@ INSERT INTO Orders (customer_name, product_id, quantity, order_date) VALUES
 
 
 --Questions:
-	SELECT p.category, SUM(o.quantity) AS total_quantity
-	FROM Orders o
-	JOIN Products p ON o.product_id = p.product_id
-	GROUP BY p.category;
+--Q1.
+select o.product_id, sum(o.quantity) from orders o group by o.product_id;
 
-
-	SELECT p.category
-	FROM Orders o
-	JOIN Products p ON o.product_id = p.product_id
-	GROUP BY p.category
-	HAVING SUM(o.quantity) > 5;
+--Q2.
+select category from products p where product_id = 
+(select product_id from orders group by product_id having sum(quantity) > 5);
